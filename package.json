@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "eslint": "^6.1.0",
-    "nodemon": "^1.19.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1"
   },
   "engines": {
     "node": "10.15.3"
