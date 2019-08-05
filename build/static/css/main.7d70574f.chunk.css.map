@@ -1,1 +1,0 @@
-{"version":3,"sources":["app.css"],"names":[],"mappings":"AAAA,cACI,cAAe,CACf,eAAgB,CAChB,WAAY,CACZ,sBAAuB,CACvB,YAAa,CACb,kBACJ","file":"main.7d70574f.chunk.css","sourcesContent":[".notification {\r\n    font-size: 22px;\r\n    max-width: 600px;\r\n    color: green;\r\n    border: 5px solid green;\r\n    padding: 10px;\r\n    margin-bottom: 10px;\r\n}"]}

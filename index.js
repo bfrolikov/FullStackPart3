@@ -22,7 +22,7 @@ app.get('/api/persons', (request, response, next) => {
         .catch(error => next(error));
 })
 
-app.get('/info', (request, response,next) => {
+app.get('/info', (request, response, next) => {
     Person
         .count({})
         .then(size => {
@@ -31,7 +31,7 @@ app.get('/info', (request, response,next) => {
                <p>${new Date().toUTCString()}</p>
             `);
         })
-        .catch(error=>next(error))
+        .catch(error => next(error))
 
 })
 
@@ -56,11 +56,6 @@ app.delete('/api/persons/:id', (request, response, next) => {
 
 app.post('/api/persons', (request, response, next) => {
     var receivedPerson = request.body;
-    if (!receivedPerson.name)
-        return next(new Error('Name is missing'))
-    if (!receivedPerson.number)
-        return next(new Error('Number is missing'))
-
     var newPerson = new Person({
         name: receivedPerson.name,
         number: receivedPerson.number
@@ -76,9 +71,9 @@ app.post('/api/persons', (request, response, next) => {
 app.put('/api/persons/:id', (request, response, next) => {
     var receivedPerson = request.body;
     if (!receivedPerson.name)
-        return next(new Error('Name is missing'))
+        return response.status(400).json({ error: 'Name is missing' })
     if (!receivedPerson.number)
-        return next(new Error('Number is missing'))
+        return response.status(400).json({ error: 'Number is missing' })
     var updatedPerson = {
         name: receivedPerson.name,
         number: receivedPerson.number
@@ -95,8 +90,10 @@ app.use(unknownEndpoint);
 
 const errorHandler = (error, request, response, next) => {
     if (error.name === 'CastError' && error.kind === 'ObjectId') {
-        console.log(error);
-        return response.status(400).json({ error: 'malformatted id' })
+        return response.status(400).json({ error: 'malformatted id' });
+    }
+    else if (error.name === 'ValidationError') {
+        return response.status(400).json({error:error.message});
     }
     next(error);
 }
