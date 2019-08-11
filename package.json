@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "watch": "nodemon index.js",
+    "lint": "node_modules/.bin/eslint index.js",
     "buildFrontendWin": "rmdir /Q /S build & mkdir build & cd ../part2/phonebook & rmdir /Q /S build & npm run build & xcopy build \"../../part3/build \" /O /X /E /H /K",
     "deployWin": "git add . & git commit -m \"ui updated\" & git push heroku master"
   },
@@ -22,7 +23,9 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.1"
   },
   "engines": {
